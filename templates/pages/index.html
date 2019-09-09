@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto:300i,400,700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link
+			rel="shortcut icon"
+			type="image/png"
+			href="{% static 'img/Next-One-Logo-min-ocean2.png' %}"
+		/>
+
+		<title>Next One</title>
+	</head>
+	<body>
+		<div class="landing">
+			<div class="landing__left">
+				<img
+					src="{% static 'img/Next-One-Logo-min-ocean2.png' %}"
+					alt="Logo"
+					class="landing__logo"
+				/>
+				<h3 class="heading-primary">Welcome to</h3>
+				<h3 class="heading-secondary">nextONE</h3>
+				<div class="landing__form">
+					<form  method="POST">
+						{% csrf_token %}
+						<div class="landing__input-group">
+							<label for="username" class="landing__label">Username</label>
+							<input
+								placeholder="Username"
+								name="username"
+								type="text"
+								class="landing__input"
+								required
+							/>
+						</div>
+						<div class="landing__input-group">
+							<label for="password" class="landing__label">Password</label>
+							<input
+								placeholder="Password"
+								name="password"
+								type="password"
+								class="landing__input"
+								required
+							/>
+						</div>
+						<input type="submit" value="Login" class="btn-primary">
+					</form>
+				</div>
+			</div>
+			<div class="landing__right">
+				<img class="landing__photo" src="{% static 'img/landing.png' %}" alt="Landing" />
+			</div>
+		</div>
+	</body>
+</html>
