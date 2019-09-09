@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
+    'users.apps.UsersConfig',
+    'torrents.apps.TorrentsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,8 +78,11 @@ WSGI_APPLICATION = 'nextone.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nextonedb',
+        'USER': 'postgres',
+        'PASSWORD': 'Pa$$w0rd',
+        'HOST': 'localhost'
     }
 }
 

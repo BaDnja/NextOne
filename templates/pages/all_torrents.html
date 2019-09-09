@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="profile__main">
+	<div class="profile__search-box">
+		<input
+			placeholder="Torrent Name..."
+			type="text"
+			class="profile__search"
+		/>
+		<a href="#" class="profile__btn-search btn-tertiary">Search</a>
+</div>
+
+<h1 class="heading-quaternary u-margin-bottom-small">All Torrents</h1>
+				<div class="torrents__torrents">
+					<div class="torrents__torrent-sort">
+						<p class="torrents__torrent-title">
+							Name
+						</p>
+						<p class="torrents__torrent-date">Date Added</p>
+					</div>
+					<div class="torrents__torrent-list">
+								<div id="list-item" class="torrents__torrent-list-item">
+									<p class="torrents__torrent-title">
+										Torrent 1
+									</p>
+									<p class="torrents__torrent-date">27/04/2019</p>
+								</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}

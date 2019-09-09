@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link
+			href="https://fonts.googleapis.com/css?family=Roboto:300i,400,700&display=swap"
+			rel="stylesheet"
+		/>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link
+			rel="shortcut icon"
+			type="image/png"
+			href="{% static 'img/Next-One-Logo-min-ocean2.png' %}"
+		/>
+
+
+    <title>NextOne</title>
+</head>
+<body>
+
+        <div class="profile">
+                <div class="profile__menu">
+                    <div class="profile__logo">
+                        <img
+                            src="{% static 'img/Next-One-Logo-min-white.png' %}"
+                            alt="Logo"
+                            class="profile__logo-img"
+                        />
+                        <h1 class="heading-tertiary profile__logo-title">nextONE</h1>
+                    </div>
+                    <div class="profile__avatar">
+                        <img src="{% static 'img/person.jpg' %}" alt="Avatar" class="profile__avatar-img" />
+                        <p class="profile__username">Amar Badnjevic</p>
+                    </div>
+                    <a href="{% url 'upload' %}" class="btn-secondary u-margin-top-small" id="upload"
+                        >Upload</a
+                    >
+                    <div class="profile__nav">
+                        <ul>
+                            <li
+                                {% if 'my-torrents' in request.path %}
+                                    class = "profile__nav-item u-menu-item-active"
+                                {% endif %}
+                            >
+                            <a href="{% url 'my_torrents' %}" class="profile__nav-item">My Torrents</a>
+                            </li>
+
+                            <li
+                                {% if 'all-torrents' in request.path %}
+                                    class = "profile__nav-item u-menu-item-active"
+                                {% endif %}
+                            >
+                            <a href="{% url 'all_torrents' %}" class= "profile__nav-item">All Torrents</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="{% url 'index' %}" class="profile__btn-logout">Logout</a>
+                </div>
+
+    {% block content %}
+    
+    
+    
+    {% endblock %}
+
+</body>
+</html>
