@@ -4,14 +4,18 @@
 {% block content %}
 
 <div class="profile__main">
-	<div class="profile__search-box">
-		<input
-			placeholder="Torrent Name..."
-			type="text"
-			class="profile__search"
-		/>
-		<a href="#" class="profile__btn-search btn-tertiary">Search</a>
-</div>
+		<form action="{% url 'search' %}" method="POST">
+				{% csrf_token %}
+				<div class="profile__search-box">
+					<input
+						placeholder="Torrent Name..."
+						type="text"
+						name="torrentName"
+						class="profile__search"
+					/>
+					<input type="submit" value="Search" class="profile__btn-search btn-tertiary">
+				</div>
+				</form>
 
 <h1 class="heading-quaternary u-margin-bottom-small">My Torrents</h1>
 				<div class="profile__torrents">
@@ -24,94 +28,20 @@
                     
                     <!-- List of torrents -->
 					<div class="profile__torrent-list">
-						<div id="list-item" class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
-						<div class="profile__torrent-list-item">
-							<p class="profile__torrent-title">
-								Avengers: Endgame
-							</p>
-							<p class="profile__torrent-date">28/08/2019</p>
-						</div>
+						{% if torrents %}
+							{% for torrent in torrents %}
+								<div id="list-item" class="profile__torrent-list-item">
+									<p class="profile__torrent-title">
+										{{ torrent.title }}
+									</p>
+									<p class="profile__torrent-date">{{ torrent.date_added}}</p>
+								</div>
+							{% endfor %}
+						{% endif %}
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 
 {% endblock %}

@@ -9,7 +9,7 @@ class Torrent(models.Model):
     is_downloaded = models.BooleanField(default=False)
     primary_subtitle = models.CharField(max_length=200, blank=True)
     secondary_subtitle = models.CharField(max_length=200, blank=True)
-    added_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+    added_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.title

@@ -3,18 +3,19 @@
 {% block content %}
 
 <div class="profile__main">
-		<form action="{% url 'search' %}" method="POST">
-				{% csrf_token %}
-				<div class="profile__search-box">
-					<input
-						placeholder="Torrent Name..."
-						type="text"
-						name="torrentName"
-						class="profile__search"
-					/>
-					<input type="submit" value="Search" class="profile__btn-search btn-tertiary">
-				</div>
-				</form>
+	<form action="{% url 'search' %}" method="POST">
+			{% csrf_token %}
+	<div class="profile__search-box">
+		<input
+			placeholder="Torrent Name..."
+			type="text"
+			name="torrentName"
+			class="profile__search"
+		/>
+		<input type="submit" value="Search" class="profile__btn-search btn-tertiary">
+	</div>
+	</form>
+
 
 <h1 class="heading-quaternary u-margin-bottom-small">All Torrents</h1>
 				<div class="torrents__torrents">
@@ -28,9 +29,9 @@
 					{% if torrents %}
 						{% for torrent in torrents %}
 								<div id="list-item" class="torrents__torrent-list-item">
-									<a href="{% url 'torrent' torrent.id %}" class="torrents__torrent-title">
+									<p class="torrents__torrent-title">
 										{{ torrent.title }}
-									</a>
+									</p>
 									<p class="torrents__torrent-date">{{ torrent.date_added }}</p>
 								</div>
 						{% endfor %}
@@ -38,6 +39,7 @@
 				</div>
 				</div>
 			</div>
-		</div>
+</div>
+
 
 {% endblock %}

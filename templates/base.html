@@ -32,7 +32,10 @@
                         />
                         <h1 class="heading-tertiary profile__logo-title">nextONE</h1>
                     </div>
-                    
+                    <div class="torrents__avatar">
+                            <img src="{{ request.user.profile.photo.url }}" alt="Avatar" class="torrents__avatar-img" />
+                            <p class="torrents__username">{{ request.user.get_full_name }}</p>
+                        </div>
                     <a href="{% url 'upload' %}" class="btn-secondary u-margin-top-small" id="upload"
                         >Upload</a
                     >
@@ -55,7 +58,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="{% url 'index' %}" class="profile__btn-logout">Logout</a>
+                    <a type="submit" value="Logout" href="{% url 'index' %}" class="profile__btn-logout">Logout</a>
                 </div>
 
     {% block content %}
@@ -63,6 +66,8 @@
     
     
     {% endblock %}
+
+    <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>

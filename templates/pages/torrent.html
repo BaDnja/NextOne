@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form class="form" action="{% url 'upload' %}" method="POST">
+    {% csrf_token %}
+
+    <div class="form__item">
+            <label class="form__label" for="torrentTitle">Name: </label>
+            <input class="form__input" value="{{ torrent.title }}" id="torrentTitle" type="text" placeholder="Enter Torrent Name" disabled>
+    </div>
+
+    <div class="form__item">
+            <label class="form__label" for="torrentLink">Link: </label>
+            <input class="form__input" value="{{ torrent.link }}" id="torrentLink" type="text" placeholder="Enter Torrent Link" disabled>
+    </div>
+
+    <div class="form__item">
+            <label class="form__label" for="primarySubtitle">Primary Subtitle: </label>
+            <input class="form__input" value="{{ torrent.primary_subtitle }}" id="primarySubtitle" type="text" placeholder="Enter Primary Subtitle" disabled>
+    </div>
+
+    <div class="form__item">
+            <label class="form__label" for="secondarySubtitle">Secondary Subtitle: </label>
+            <input class="form__input" value="{{ torrent.secondary_subtitle }}" id="secondarySubtitle" type="text" placeholder="Enter Secondary Subtitle" disabled>
+    </div>
+
+    <div class="form__item">
+                <label class="form__label" for="secondarySubtitle">Is downloaded? </label>
+                <input class="form__input" value="{% if torrent.is_downloaded %}Yes{% else %}No{% endif %}" id="secondarySubtitle" type="text" placeholder="Enter Secondary Subtitle" disabled>
+    </div>
+</form>
+
+
+{% endblock %}
