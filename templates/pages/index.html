@@ -30,7 +30,7 @@
 				<h3 class="heading-primary">Welcome to</h3>
 				<h3 class="heading-secondary">nextONE</h3>
 				<div class="landing__form">
-					<form  method="POST">
+					<form  action="{% url 'index' %}" method="POST">
 						{% csrf_token %}
 						<div class="landing__input-group">
 							<label for="username" class="landing__label">Username</label>

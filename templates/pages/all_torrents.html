@@ -21,13 +21,17 @@
 						<p class="torrents__torrent-date">Date Added</p>
 					</div>
 					<div class="torrents__torrent-list">
+					{% if torrents %}
+						{% for torrent in torrents %}
 								<div id="list-item" class="torrents__torrent-list-item">
 									<p class="torrents__torrent-title">
-										Torrent 1
+										{{ torrent.title }}
 									</p>
-									<p class="torrents__torrent-date">27/04/2019</p>
+									<p class="torrents__torrent-date">{{ torrent.date_added }}</p>
 								</div>
-					</div>
+						{% endfor %}
+					{% endif %}
+				</div>
 				</div>
 			</div>
 		</div>

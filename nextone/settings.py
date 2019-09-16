@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
-    'users.apps.UsersConfig',
+    'profiles.apps.ProfilesConfig',
     'torrents.apps.TorrentsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -132,3 +132,10 @@ STATICFILES_DIRS = [
 # MEDIA FOLDER SETTINGS
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Messages
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
