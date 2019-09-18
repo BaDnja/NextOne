@@ -2,7 +2,6 @@
 
 
 {% block content %}
-
 <form class="form" action="{% url 'upload' %}" method="POST">
     {% csrf_token %}
 
@@ -25,7 +24,8 @@
             <label class="form__label" for="secondarySubtitle">Secondary Subtitle: </label>
             <input class="form__input" name="secondary_subtitle" id="secondarySubtitle" type="text" placeholder="Enter Secondary Subtitle">
     </div>
-
+    
+    {% include 'partials/_alerts.html' %}
     <button type="submit" value="Upload" class="btn btn-primary">Upload</button>
 </form>
 

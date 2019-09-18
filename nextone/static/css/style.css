@@ -69,6 +69,10 @@ body {
   font-size: 1.75rem;
   transition: all .2s;
   position: relative; }
+  .btn-primary:hover {
+    cursor: pointer;
+    background-color: rgb(119, 193, 223);
+  }
   .btn-primary::after {
     content: "";
     display: inline-block;
@@ -97,92 +101,6 @@ body {
   box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.15); }
   .btn-secondary:hover {
     background-color: #165d7a; }
-
-.modal {
-  width: 50%;
-  margin: 10rem auto;
-  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.15);
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  display: none;
-  border-radius: 1rem;
-  position: fixed; }
-  .modal__header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #F4F8F7;
-    padding: 1rem 2rem;
-    align-items: center;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem; }
-  .modal__title {
-    color: #A5A9A8;
-    font-weight: 400;
-    font-size: 2rem; }
-  .modal__btn-close {
-    text-decoration: none;
-    color: #A5A9A8;
-    font-size: 4rem; }
-    .modal__btn-close:hover {
-      color: #cccece; }
-  .modal__input-group {
-    padding: 2rem;
-    color: #A5A9A8;
-    display: flex;
-    flex-direction: row;
-    align-items: center; }
-  .modal__label {
-    display: inline-block;
-    width: 40%;
-    font-size: 3rem; }
-  .modal__input {
-    border: none;
-    outline: 0;
-    background-color: #F4F8F7;
-    color: #A5A9A8;
-    padding: 1rem;
-    font-size: 2rem;
-    border-radius: 1rem;
-    width: 50%;
-    box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.15); }
-    .modal__input:focus {
-      background-color: #eef4f2; }
-  .modal__footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    background-color: #F4F8F7;
-    padding: 1rem 2rem;
-    align-items: center;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem; }
-  .modal__btn-cancel {
-    text-decoration: none;
-    display: inline-block;
-    background-color: #ffffff;
-    color: #4BB4DE;
-    padding: 1rem 3rem;
-    border-radius: 1rem;
-    box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.15);
-    margin-right: 2rem;
-    font-size: 2rem; }
-    .modal__btn-cancel:hover {
-      background-color: #fafafa; }
-  .modal__btn-save {
-    text-decoration: none;
-    display: inline-block;
-    background-color: #4BB4DE;
-    color: #ffffff;
-    padding: 1rem 3rem;
-    border-radius: 1rem;
-    box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.15);
-    font-size: 2rem; }
-    .modal__btn-save:hover {
-      background-color: #61bde2; }
 
 .landing {
   margin-left: 20rem;
@@ -324,6 +242,7 @@ body {
     border-radius: 1rem;
     margin-left: 2rem; }
     .profile__btn-search:hover {
+      cursor: pointer;
       background-color: #eef4f2; }
   .profile__torrents {
     background-color: #ffffff;
@@ -334,22 +253,25 @@ body {
     flex-direction: row;
     justify-content: space-between;
     padding: 1.5rem 10rem; }
-  .profile__torrent-list {
+  .torrent-list {
     overflow-y: scroll;
     max-height: 60vh; }
-  .profile__torrent-list-item {
+  .torrent-list-item {
     display: flex;
+    text-decoration: none;
     flex-direction: row;
     justify-content: space-between;
     padding: 1.5rem 10rem;
     border-bottom: 1px solid #F4F8F7; }
-    .profile__torrent-list-item:hover {
+    .torrent-list-item:hover {
       cursor: pointer;
       background-color: #f7faf9; }
-  .profile__torrent-title {
+  .torrent-title {
     font-size: 2.5rem;
-    font-weight: 400; }
-  .profile__torrent-date {
+    font-weight: 400;
+    text-decoration: none !important;
+    color: #A5A9A8; }
+  .torrent-date {
     font-size: 2.5rem;
     font-weight: 300;
     color: #A5A9A8; }
@@ -438,6 +360,7 @@ body {
     border-radius: 1rem;
     margin-left: 2rem; }
     .torrents__btn-search:hover {
+      cursor: pointer;
       background-color: #eef4f2; }
   .torrents__torrents {
     background-color: #ffffff;
@@ -448,25 +371,6 @@ body {
     flex-direction: row;
     justify-content: space-between;
     padding: 1.5rem 10rem; }
-  .torrents__torrent-list {
-    overflow-y: scroll;
-    max-height: 60vh; }
-  .torrents__torrent-list-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1.5rem 10rem;
-    border-bottom: 1px solid #F4F8F7; }
-    .torrents__torrent-list-item:hover {
-      cursor: pointer;
-      background-color: #f7faf9; }
-  .torrents__torrent-title {
-    font-size: 2.5rem;
-    font-weight: 400; }
-  .torrents__torrent-date {
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: #A5A9A8; }
 
 /***********************************************   MAIN ****************************************************/
 
@@ -494,4 +398,41 @@ body {
   padding: 10px;
   border-radius: 5px;
   font-size: 1.5rem;
+}
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  margin-right: 40%;
+  padding-top: 20px;
+  color: white;
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.alert-danger {
+  background-color: lightsalmon;
+}
+
+.alert-info {
+  background-color: lightblue;
+}
+
+.alert-success {
+  background-color: lightgreen;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 17px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+input[type='submit'] {
+  border: none;
 }

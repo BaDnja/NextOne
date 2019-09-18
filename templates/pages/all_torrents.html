@@ -3,41 +3,42 @@
 {% block content %}
 
 <div class="profile__main">
-		<form action="{% url 'search' %}" method="POST">
-				{% csrf_token %}
-				<div class="profile__search-box">
-					<input
-						placeholder="Torrent Name..."
-						type="text"
-						name="torrentName"
-						class="profile__search"
-					/>
-					<input type="submit" value="Search" class="profile__btn-search btn-tertiary">
-				</div>
-				</form>
+	<form action="{% url 'search' %}" method="POST">
+			{% csrf_token %}
+			<div class="profile__search-box">
+				<input
+					placeholder="Torrent Name..."
+					type="text"
+					name="torrentName"
+					class="profile__search"
+				/>
+				<input type="submit" value="Search" class="profile__btn-search btn-tertiary">
+			</div>
+	</form>
 
-<h1 class="heading-quaternary u-margin-bottom-small">All Torrents</h1>
-				<div class="torrents__torrents">
-					<div class="torrents__torrent-sort">
-						<p class="torrents__torrent-title">
-							Name
-						</p>
-						<p class="torrents__torrent-date">Date Added</p>
+	{% include 'partials/_alerts.html' %}
+	<h1 class="heading-quaternary u-margin-bottom-small">All Torrents</h1>
+					<div class="torrents__torrents">
+						<div class="torrents__torrent-sort">
+							<p class="torrent-title">
+								Name
+							</p>
+							<p class="torrent-date">Date Added</p>
+						</div>
+						<div class="torrent-list">
+								{% if torrents %}
+									{% for torrent in torrents %}
+										<a href="{% url 'torrent' torrent.id %}" class="torrent-list-item">
+											<p class="torrent-title">
+													{{ torrent.title }}
+											</p>
+											<p class="torrent-date">{{ torrent.date_added}}</p>
+										</a>
+									{% endfor %}
+								{% endif %}
+							</div>
 					</div>
-					<div class="torrents__torrent-list">
-					{% if torrents %}
-						{% for torrent in torrents %}
-								<div id="list-item" class="torrents__torrent-list-item">
-									<a href="{% url 'torrent' torrent.id %}" class="torrents__torrent-title">
-										{{ torrent.title }}
-									</a>
-									<p class="torrents__torrent-date">{{ torrent.date_added }}</p>
-								</div>
-						{% endfor %}
-					{% endif %}
-				</div>
 				</div>
 			</div>
-		</div>
 
 {% endblock %}

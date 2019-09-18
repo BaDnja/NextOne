@@ -17,25 +17,26 @@
 				</div>
 				</form>
 
+	{% include 'partials/_alerts.html' %}
 <h1 class="heading-quaternary u-margin-bottom-small">My Torrents</h1>
 				<div class="profile__torrents">
 					<div class="profile__torrent-sort">
-						<p class="profile__torrent-title">
+						<p class="torrent-title">
 							Name
 						</p>
-						<p class="profile__torrent-date">Date Added</p>
+						<p class="torrent-date">Date Added</p>
                     </div>
                     
                     <!-- List of torrents -->
-					<div class="profile__torrent-list">
+					<div class="torrent-list">
 						{% if torrents %}
 							{% for torrent in torrents %}
-								<div id="list-item" class="profile__torrent-list-item">
-									<p class="profile__torrent-title">
-										{{ torrent.title }}
+								<a href="{% url 'torrent' torrent.id %}" class="torrent-list-item">
+									<p class="torrent-title">
+											{{ torrent.title }}
 									</p>
-									<p class="profile__torrent-date">{{ torrent.date_added}}</p>
-								</div>
+									<p class="torrent-date">{{ torrent.date_added}}</p>
+								</a>
 							{% endfor %}
 						{% endif %}
 					</div>

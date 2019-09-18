@@ -12,6 +12,7 @@ def index(request):
  
         if user is not None:
             auth.login(request, user)
+            messages.success(request, "Successfuly logged in!")
             return redirect('all_torrents')
         else:
             messages.error(request, "Invalid credentials!")
@@ -40,11 +41,16 @@ def my_torrents(request):
 def torrent(request, torrent_id):
     torrent = get_object_or_404(Torrent, pk=torrent_id)
 
-    context = {
+    if request.method == 'POST':
+        torrent.delete()
+        messages.success(request, 'Torrent successfuly deleted!')
+        return redirect('all_torrents')
+    else:
+        context = {
         'torrent': torrent
-    }
+        }
 
-    return render(request, 'pages/torrent.html', context)
+        return render(request, 'pages/torrent.html', context)
 
 def upload(request):
     if request.method == 'POST':
@@ -65,6 +71,7 @@ def upload(request):
                             added_by=request.user
             )
             torrent.save()
+            messages.success(request, "Torrent successfuly uploaded!")
             return redirect('all_torrents')
     else:
         return render(request, 'pages/upload.html')
@@ -86,4 +93,5 @@ def search(request):
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
+        messages.success(request, "Successfuly logged out!")
         return redirect('index')
