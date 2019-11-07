@@ -1,0 +1,104 @@
+html {
+  font-size: 62.5%;
+  background-color: #a29bfe;
+}
+
+body {
+  background-color: #a29bfe;
+}
+
+.navbar-container {
+  background-color: #4bb4de;
+}
+
+.navbar {
+  background-color: #4bb4de;
+}
+
+.navbar-custom a {
+  color: white;
+  font-size: 2.7em;
+  font-family: "Roboto", sans-serif;
+}
+
+.logo-blue {
+  max-width: 6em;
+  max-height: 6em;
+}
+
+.heading-text {
+  margin-top: 3em;
+  color: #2d3436;
+}
+
+.form-container {
+  width: 50%;
+  margin: auto;
+  margin-top: 7em;
+}
+
+.login-form {
+  border: 1px solid black;
+  border-radius: 5em 1em;
+  border: 1px solid #686de0;
+  border-radius: 5em 1em;
+  box-shadow: 0 1em 2em 0 #686de0, 0 1em 2em 0 #686de0;
+}
+
+.login-label {
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  color: #0984e3;
+}
+
+.form-control {
+  margin-top: 1em !important;
+  padding: 1.6em 1em !important;
+  width: 70% !important;
+  margin: auto !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+}
+
+.btn-primary {
+  margin: 1em;
+  font-size: 1.6em;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 37.5em) {
+  .form-container {
+    width: 100%;
+  }
+
+  .form-control {
+    width: 90% !important;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1800px and up) */
+@media only screen and (min-width: 112.5em) {
+  .heading-text h1 {
+    font-size: 4em !important;
+  }
+
+  .login-label {
+    font-size: 4em !important;
+  }
+
+  .btn-primary {
+    margin: 1.5em !important;
+    font-size: 2em !important;
+  }
+
+  .form-control {
+    margin-top: 1.5em !important;
+    padding: 1.6em 1em !important;
+    font-size: 1.7rem !important;
+    line-height: 1.5 !important;
+  }
+}

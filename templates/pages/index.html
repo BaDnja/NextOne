@@ -2,65 +2,109 @@
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'img/logo-white.png' %}"
+    />
 
-		<link
-			href="https://fonts.googleapis.com/css?family=Roboto:300i,400,700&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
-		<link
-			rel="shortcut icon"
-			type="image/png"
-			href="{% static 'img/Next-One-Logo-min-ocean2.png' %}"
-		/>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-		<title>Next One</title>
-	</head>
-	<body>
-		<div class="landing">
-			<div class="landing__left">
-				<img
-					src="{% static 'img/Next-One-Logo-min-ocean2.png' %}"
-					alt="Logo"
-					class="landing__logo"
-				/>
-				<h3 class="heading-primary">Welcome to</h3>
-				<h3 class="heading-secondary">nextONE</h3>
-				<div class="landing__form">
-					<form  action="{% url 'index' %}" method="POST">
-						{% csrf_token %}
-						<div class="landing__input-group">
-							<label for="username" class="landing__label">Username</label>
-							<input
-								placeholder="Username"
-								name="username"
-								type="text"
-								class="landing__input"
-								required
-							/>
-						</div>
-						<div class="landing__input-group">
-							<label for="password" class="landing__label">Password</label>
-							<input
-								placeholder="Password"
-								name="password"
-								type="password"
-								class="landing__input"
-								required
-							/>
-							
-						{% include 'partials/_alerts.html' %}
-						</div>
-						<input type="submit" value="Login" class="btn-primary">
-					</form>
-				</div>
-			</div>
-			<div class="landing__right">
-				<img class="landing__photo" src="{% static 'img/landing.png' %}" alt="Landing" />
-			</div>
-		</div>
-	</body>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300i,400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/index.css' %}"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <title>nextONE</title>
+  </head>
+  <body>
+    <div class="navbar-container">
+      <div class="container">
+        <nav class="navbar navbar-custom">
+          <img class="logo-blue" src="{% static 'img/logo-white.png' %}" />
+          <a class="navbar-brand" href="#!">nextOne</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="heading-text text-center">
+        <h1>Please Log in to your account</h1>
+      </div>
+      <div class="form-container">
+        <form class="login-form" action="{% url 'index' %}" method="POST">
+          {% csrf_token %}
+          <div class="form-group d-flex justify-content-center flex-column">
+            <label class="text-center login-label" for="username"
+              >Username</label
+            >
+            <input
+              placeholder="Username"
+              name="username"
+              type="text"
+              class="form-control"
+              id="username-login-input"
+              required
+            />
+          </div>
+          <div class="form-group d-flex justify-content-center flex-column">
+            <label class="text-center login-label" for="password"
+              >Password</label
+            >
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              class="form-control"
+              id="password-login-input"
+              required
+            />
+          </div>
+          {% include 'partials/_alerts.html' %}
+          <div class="login-button d-flex justify-content-center">
+            <input type="submit" value="Login" class="btn-primary" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
