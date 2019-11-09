@@ -1,48 +1,76 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% block content %}
+<!-- Upload and Search -->
 
-{% block content %}
+<div class="container upload-search">
+  <div class="d-flex flew-row">
+    <a href="{% url 'upload' %}" id="upload">
+      <button type="button" class="btn btn-outline-primary">
+        Upload New Torrent
+      </button>
+    </a>
+    <div class="d-flex flex-row ml-5">
+      <form action="{% url 'search' %}" method="POST" class="form-inline">
+        {% csrf_token %}
+        <input
+          name="torrentName"
+          class="form-control"
+          type="text"
+          placeholder="Search Torrents"
+          aria-label="Search"
+          required
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</div>
 
-<div class="profile__main">
-		<form action="{% url 'search' %}" method="POST">
-				{% csrf_token %}
-				<div class="profile__search-box">
-					<input
-						placeholder="Torrent Name..."
-						type="text"
-						name="torrentName"
-						class="profile__search"
-					/>
-					<input type="submit" value="Search" class="profile__btn-search btn-tertiary">
-				</div>
-				</form>
+{% include 'partials/_alerts.html' %}
 
-	{% include 'partials/_alerts.html' %}
-<h1 class="heading-quaternary u-margin-bottom-small">My Torrents</h1>
-				<div class="profile__torrents">
-					<div class="profile__torrent-sort">
-						<p class="torrent-title">
-							Name
-						</p>
-						<p class="torrent-date">Date Added</p>
-                    </div>
-                    
-                    <!-- List of torrents -->
-					<div class="torrent-list">
-						{% if torrents %}
-							{% for torrent in torrents %}
-								<a href="{% url 'torrent' torrent.id %}" class="torrent-list-item">
-									<p class="torrent-title">
-											{{ torrent.title }}
-									</p>
-									<p class="torrent-date">{{ torrent.date_added}}</p>
-								</a>
-							{% endfor %}
-						{% endif %}
-					</div>
-				</div>
-			</div>
-		</div>
+<!-- Torrent List and Information -->
 
+<section id="torrents" class="py-4">
+  <div class="container">
+    <h1 class="text-center">My Torrents</h1>
+    <div class="row">
+      {% if torrents %} {% for torrent in torrents %}
+      <div class="col-sm-2 col-lg-4 mb-4">
+        <div class="card text-center torrent-preview" style="width: 28em;">
+          <h2 class="mb-2 text-center">{{ torrent.title }}</h2>
+
+          <div class="card-body">
+            <div class="row mb-2">
+              <h3 class="ml-3">Added By:</h3>
+              <h3 class="text-right ml-5">
+                {{ torrent.added_by.get_full_name }}
+              </h3>
+            </div>
+
+            <div class="row mb-2">
+              <h3 class="ml-3">Date Added:</h3>
+              <h3 class="text-right ml-5">{{ torrent.date_added }}</h3>
+            </div>
+
+            <div class="row mb-2">
+              <h3 class="ml-3 mr-5">Downloaded:</h3>
+              <h3 class="text-right ml-5">
+                {% if torrent.is_downloaded %}Yes{% else %}No{% endif %}
+              </h3>
+            </div>
+
+            <a href="#" style="font-size: 1.5em;" class="btn btn-primary"
+              >More Info</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="col-md-12">
+        <h1>No Torrents Available</h1>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
 
 {% endblock %}

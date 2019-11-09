@@ -2,73 +2,123 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Google Font -->
     <link
-			href="https://fonts.googleapis.com/css?family=Roboto:300i,400,700&display=swap"
-			rel="stylesheet"
-		/>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-		<link
-			rel="shortcut icon"
-			type="image/png"
-			href="{% static 'img/logo-blue.png' %}"
-		/>
+      href="https://fonts.googleapis.com/css?family=Roboto:300i,400,700&display=swap"
+      rel="stylesheet"
+    />
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/torrents.css' %}" />
 
-    <title>NextOne</title>
-</head>
-<body>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-        <div class="profile">
-                <div class="profile__menu">
-                    <div class="profile__logo">
-                        <img
-                            src="{% static 'img/logo-white.png' %}"
-                            alt="Logo"
-                            class="profile__logo-img"
-                        />
-                        <h1 class="heading-tertiary profile__logo-title">nextONE</h1>
-                    </div>
-                    <div class="torrents__avatar">
-                            <img src="{{ request.user.profile.photo.url }}" alt="Avatar" class="torrents__avatar-img" />
-                            <p class="torrents__username">{{ request.user.get_full_name }}</p>
-                        </div>
-                    <a href="{% url 'upload' %}" class="btn-secondary u-margin-top-small" id="upload"
-                        >Upload</a
-                    >
-                    <div class="profile__nav">
-                        <ul>
-                            <li
-                                {% if 'my-torrents' in request.path %}
-                                    class = "profile__nav-item u-menu-item-active"
-                                {% endif %}
-                            >
-                            <a href="{% url 'my_torrents' %}" class="profile__nav-item">My Torrents</a>
-                            </li>
+    <title>nextOne</title>
+  </head>
+  <body>
+    <div class="base-navbar">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <img class="app-logo" src="{% static 'img/logo-white.png' %}" alt="App Logo" />
+            <h1 class="navbar-brand">nextOne</h1>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-                            <li
-                                {% if 'all-torrents' in request.path %}
-                                    class = "profile__nav-item u-menu-item-active"
-                                {% endif %}
-                            >
-                            <a href="{% url 'all_torrents' %}" class= "profile__nav-item">All Torrents</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a type="submit" value="Logout" href="{% url 'index' %}" class="profile__btn-logout">Logout</a>
-                </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+              <li
+              {% if 'all-torrents' in request.path %}
+                class = "torrents active-item"
+              {% endif %}
+
+              class="nav-item torrents"
+              >
+                <a class="nav-link" href="{% url 'all_torrents' %}"
+                  >All Torrents</span></a>
+              </li>
+
+              <li
+              {% if 'my-torrents' in request.path %}
+                class = "torrents active-item"
+              {% endif %}
+
+              class="nav-item torrents">
+                <a class="nav-link" href="{% url 'my_torrents' %}">My torrents</a>
+              </li>
+
+              <div class="current-user img">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                      <img
+                      class="profile-img"
+                      src="{{ request.user.profile.photo.url }}"
+                      alt="Profile picture"
+                      />
+                    </li>
+      
+                    <li class="nav-item">
+                      <h2 class="nav-link">{{ request.user.get_full_name }}</h2>
+                    </li>
+                </ul>
+              </div>
+
+              <li class="nav-item torrents">
+                <a class="nav-link" value="Logout" href="{% url 'index' %}">Log Out</a>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
 
     {% block content %}
     
     
     
     {% endblock %}
-    
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
 
-</body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

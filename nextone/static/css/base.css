@@ -1,0 +1,46 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Roboto", sans-serif !important;
+}
+
+.base-navbar {
+  background-color: #4bb4de;
+}
+
+.navbar {
+  border-bottom: 0.2em solid #ffffff;
+  border-left: 0.2em solid #ffffff;
+  border-right: 0.2em solid #ffffff;
+  border-radius: 30%;
+}
+
+.profile-img {
+  height: 5em;
+  border-radius: 50%;
+}
+
+.app-logo {
+  height: 6em;
+}
+
+.navbar-brand {
+  font-size: 2.5em !important;
+}
+
+.nav-link {
+  font-size: 1.6em;
+  font-weight: 600;
+  margin-top: 0.5em;
+}
+
+.torrents {
+  margin-left: 3em;
+}
+
+.img {
+  margin-left: 10em;
+  margin-right: 30em;
+}
