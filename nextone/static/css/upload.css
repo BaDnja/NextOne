@@ -1,0 +1,13 @@
+.form__label {
+  font-size: 2em;
+}
+
+.form__input {
+  font-size: 1.5em;
+  margin-left: 1.5em;
+}
+
+.btn-primary {
+  font-size: 1.5em !important;
+  width: 30%;
+}

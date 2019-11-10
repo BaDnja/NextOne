@@ -1,47 +1,106 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class=" span6 upload-form" style="float: none; margin: 0 auto;">
+      <form class="form" action="{% url 'torrent' torrent.id %}" method="POST">
+        {% csrf_token %}
 
-{% block content %}
+        <div class="form__item">
+          <label class="form__label" for="torrentTitle">Name: </label>
+          <input
+          style="width: 100%;"
+            value="{{ torrent.title }}"
+            class="form__input"
+            id="torrentTitle"
+            type="text"
+            disabled
+          />
+        </div>
 
-<form class="form" action="{% url 'torrent' torrent.id %}" method="POST">
-    {% csrf_token %}
+        <div class="form__item">
+          <label class="form__label" for="torrentLink">Link: </label>
+          <input
+            style="width: 100%;"
+            value="{{ torrent.link }}"
+            class="form__input"
+            id="torrentLink"
+            type="text"
+            disabled
+          />
+        </div>
 
-    <div class="form__item">
-            <label class="form__label" for="torrentTitle">Name: </label>
-            <input class="form__input" value="{{ torrent.title }}" id="torrentTitle" type="text" disabled>
+        <div class="form__item">
+          <label class="form__label" for="primarySubtitle"
+            >Primary Subtitle:
+          </label>
+          <input
+            style="width: 100%;"
+            value="{% if torrent.primary_subtitle %}{{ torrent.primary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} didn't add primary subtitle{% endif %}"
+            class="form__input"
+            id="primarySubtitle"
+            type="text"
+            disabled
+          />
+        </div>
+
+        <div class="form__item">
+          <label class="form__label" for="secondarySubtitle"
+            >Secondary Subtitle:
+          </label>
+          <input
+            style="width: 100%;"
+            value="{% if torrent.secondary_subtitle %}{{ torrent.secondary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} didn't add secondary subtitle{% endif %}"
+            class="form__input"
+            id="secondarySubtitle"
+            type="text"
+            disabled
+          />
+        </div>
+
+        <div class="form__item">
+          <label class="form__label" for="secondarySubtitle"
+            >Is downloaded?
+          </label>
+          <input
+            style="width: 100%;"
+            class="form__input"
+            value="{% if torrent.is_downloaded %}Yes{% else %}No{% endif %}"
+            id="downloaded"
+            type="text"
+            disabled
+          />
+        </div>
+
+        {% include 'partials/_alerts.html' %}
+
+        <button
+          {% if request.user.id == torrent.added_by.id %}
+            style="display: block;"
+          {% else %}
+            style="display: none;"
+          {% endif %}
+          id="delete"
+          type="submit"
+          value="Delete"
+          class="btn btn-primary mt-5"
+        >
+          Delete
+        </button>
+      </form>
     </div>
-
-    <div class="form__item">
-            <label class="form__label" for="torrentLink">Link: </label>
-            <input class="form__input" value="{{ torrent.link }}" id="torrentLink" type="text" disabled>
-    </div>
-
-    <div class="form__item">
-            <label class="form__label" for="primarySubtitle">Primary Subtitle: </label>
-            <input class="form__input" value="{% if torrent.primary_subtitle %}{{ torrent.primary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} didn't add primary subtitle{% endif %}" id="primarySubtitle" type="text" disabled>
-    </div>
-
-    <div class="form__item">
-            <label class="form__label" for="secondarySubtitle">Secondary Subtitle: </label>
-            <input class="form__input" value="{% if torrent.secondary_subtitle %}{{ torrent.secondary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} didn't add secondary subtitle{% endif %}" id="secondarySubtitle" type="text" disabled>
-    </div>
-
-    <div class="form__item">
-                <label class="form__label" for="secondarySubtitle">Is downloaded? </label>
-                <input class="form__input" value="{% if torrent.is_downloaded %}Yes{% else %}No{% endif %}" id="secondarySubtitle" type="text" disabled>
-    </div>
-    <button id="delete" type="submit" value="Delete" class="btn btn-primary">Delete</button>
-</form>
+  </div>
+</div>
 
 <script>
-        const btnDelete = document.getElementById('delete')
+  const btnDelete = document.getElementById("delete");
 
-        btnDelete.onclick = (e) => {
-        const dialog = confirm('Proceed?')
-        if (!dialog) {
-                e.preventDefault();
-        }
-}
+  btnDelete.onclick = e => {
+    const dialog = confirm("Proceed?");
+    if (!dialog) {
+      e.preventDefault();
+    }
+  };
 </script>
 
 {% endblock %}

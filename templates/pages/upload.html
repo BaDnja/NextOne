@@ -1,33 +1,68 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class=" span6 upload-form" style="float: none; margin: 0 auto;">
+      <form class="form" action="{% url 'upload' %}" method="POST">
+        {% csrf_token %}
 
-{% block content %}
-<form class="form" action="{% url 'upload' %}" method="POST">
-    {% csrf_token %}
+        <div class="form__item">
+          <label class="form__label" for="torrentTitle">Name: </label>
+          <input
+            class="form__input"
+            name="torrentTitle"
+            id="torrentTitle"
+            type="text"
+            placeholder="Torrent Name"
+            required
+          />
+        </div>
 
-    <div class="form__item">
-            <label class="form__label" for="torrentTitle">Name: </label>
-            <input class="form__input" name="torrentTitle" id="torrentTitle" type="text" placeholder="Enter Torrent Name" required>
+        <div class="form__item">
+          <label class="form__label" for="torrentLink">Link: </label>
+          <input
+            class="form__input"
+            name="torrentLink"
+            id="torrentLink"
+            type="text"
+            placeholder="Torrent Link"
+            required
+          />
+        </div>
+
+        <div class="form__item">
+          <label class="form__label" for="primarySubtitle"
+            >Primary Subtitle:
+          </label>
+          <input
+            class="form__input"
+            name="primary_subtitle"
+            id="primarySubtitle"
+            type="text"
+            placeholder="Primary Subtitle"
+          />
+        </div>
+
+        <div class="form__item">
+          <label class="form__label" for="secondarySubtitle"
+            >Secondary Subtitle:
+          </label>
+          <input
+            class="form__input"
+            name="secondary_subtitle"
+            id="secondarySubtitle"
+            type="text"
+            placeholder="Secondary Subtitle"
+          />
+        </div>
+
+        {% include 'partials/_alerts.html' %}
+        <button type="submit" value="Upload" class="btn btn-primary mt-4">
+          Upload
+        </button>
+      </form>
     </div>
-
-    <div class="form__item">
-            <label class="form__label" for="torrentLink">Link: </label>
-            <input class="form__input" name="torrentLink" id="torrentLink" type="text" placeholder="Enter Torrent Link" required>
-    </div>
-
-    <div class="form__item">
-            <label class="form__label" for="primarySubtitle">Primary Subtitle: </label>
-            <input class="form__input" name="primary_subtitle" id="primarySubtitle" type="text" placeholder="Enter Primary Subtitle">
-    </div>
-
-    <div class="form__item">
-            <label class="form__label" for="secondarySubtitle">Secondary Subtitle: </label>
-            <input class="form__input" name="secondary_subtitle" id="secondarySubtitle" type="text" placeholder="Enter Secondary Subtitle">
-    </div>
-    
-    {% include 'partials/_alerts.html' %}
-    <button type="submit" value="Upload" class="btn btn-primary">Upload</button>
-</form>
-
+  </div>
+</div>
 
 {% endblock %}

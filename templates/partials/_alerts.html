@@ -1,15 +1,33 @@
 {% if messages %}
+<div class="container">
     {% for message in messages %}
     <div id="message" class="alert alert-{{ message.tags }}">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                    Error:
-                {% else %}
-                    {{ message.tags|title}}:
-                {% endif %}
-            </strong>
-            {{message}}
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                Error:
+            {% else %}
+                {{ message.tags|title}}:
+            {% endif %}
+        </strong>
+        {{message}}
     </div>
     {% endfor %}
+</div>
 {% endif %}
+
+<style>
+    #message {
+        font-size: 1.5em;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    setTimeout(function(){
+        $('#message').fadeOut('slow');
+    
+    }, 3000);
+</script>
