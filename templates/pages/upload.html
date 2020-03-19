@@ -7,13 +7,13 @@
         {% csrf_token %}
 
         <div class="form__item">
-          <label class="form__label" for="torrentTitle">Name: </label>
+          <label class="form__label" for="torrentTitle">Naziv: </label>
           <input
             class="form__input"
             name="torrentTitle"
             id="torrentTitle"
             type="text"
-            placeholder="Torrent Name"
+            placeholder="Naziv Torrenta"
             required
           />
         </div>
@@ -25,41 +25,39 @@
             name="torrentLink"
             id="torrentLink"
             type="text"
-            placeholder="Torrent Link"
+            placeholder="Link Torrenta"
             required
           />
         </div>
 
         <div class="form__item">
           <label class="form__label" for="primarySubtitle"
-            >Primary Subtitle:
+            >Primarni prijevod:
           </label>
           <input
             class="form__input"
             name="primary_subtitle"
             id="primarySubtitle"
             type="text"
-            placeholder="Primary Subtitle"
+            placeholder="Primarni prijevod"
           />
         </div>
 
         <div class="form__item">
           <label class="form__label" for="secondarySubtitle"
-            >Secondary Subtitle:
+            >Sekundarni prijevod:
           </label>
           <input
             class="form__input"
             name="secondary_subtitle"
             id="secondarySubtitle"
             type="text"
-            placeholder="Secondary Subtitle"
+            placeholder="Sekundarni prijevod"
           />
         </div>
 
         {% include 'partials/_alerts.html' %}
-        <button type="submit" value="Upload" class="btn btn-primary mt-4">
-          Upload
-        </button>
+        <button type="submit" value="Upload" class="btn btn-primary mt-4">Dodaj</button>
       </form>
     </div>
   </div>

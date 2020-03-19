@@ -60,7 +60,7 @@
               class="nav-item torrents"
               >
                 <a class="nav-link" href="{% url 'all_torrents' %}"
-                  >All Torrents</span></a>
+                  >Svi Torrenti</span></a>
               </li>
 
               <li
@@ -69,27 +69,26 @@
               {% endif %}
 
               class="nav-item torrents">
-                <a class="nav-link" href="{% url 'my_torrents' %}">My torrents</a>
+                <a class="nav-link" href="{% url 'my_torrents' %}">Moji Torrenti</a>
               </li>
 
               <div class="current-user img">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                      <img
-                      class="profile-img"
-                      src="{{ request.user.profile.photo.url }}"
-                      alt="Profile picture"
-                      />
-                    </li>
-      
-                    <li class="nav-item">
-                      <h2 class="nav-link">{{ request.user.get_full_name }}</h2>
-                    </li>
+                    <img
+                    class="profile-img"
+                      src="{{ user.profile.photo.url }}"
+                    />
+                  </li>
+    
+                  <li class="nav-item">
+                    <h2 class="nav-link">{{ request.user.get_full_name }}</h2>
+                  </li>
                 </ul>
               </div>
 
               <li class="nav-item torrents">
-                <a class="nav-link" value="Logout" href="{% url 'index' %}">Log Out</a>
+                <a class="nav-link" value="Logout" href="{% url 'index' %}">Odjava</a>
               </li>
 
             </ul>

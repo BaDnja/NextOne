@@ -7,7 +7,7 @@
         {% csrf_token %}
 
         <div class="form__item">
-          <label class="form__label" for="torrentTitle">Name: </label>
+          <label class="form__label" for="torrentTitle">Naziv: </label>
           <input
           style="width: 100%;"
             value="{{ torrent.title }}"
@@ -32,11 +32,11 @@
 
         <div class="form__item">
           <label class="form__label" for="primarySubtitle"
-            >Primary Subtitle:
+            >Primarni prijevod:
           </label>
           <input
             style="width: 100%;"
-            value="{% if torrent.primary_subtitle %}{{ torrent.primary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} didn't add primary subtitle{% endif %}"
+            value="{% if torrent.primary_subtitle %}{{ torrent.primary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} nije dodao primarni prijevod{% endif %}"
             class="form__input"
             id="primarySubtitle"
             type="text"
@@ -46,11 +46,11 @@
 
         <div class="form__item">
           <label class="form__label" for="secondarySubtitle"
-            >Secondary Subtitle:
+            >Sekundarni prijevod:
           </label>
           <input
             style="width: 100%;"
-            value="{% if torrent.secondary_subtitle %}{{ torrent.secondary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} didn't add secondary subtitle{% endif %}"
+            value="{% if torrent.secondary_subtitle %}{{ torrent.secondary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} nije dodao sekundarni prijevod{% endif %}"
             class="form__input"
             id="secondarySubtitle"
             type="text"
@@ -60,12 +60,12 @@
 
         <div class="form__item">
           <label class="form__label" for="secondarySubtitle"
-            >Is downloaded?
+            >Preuzeto?
           </label>
           <input
             style="width: 100%;"
             class="form__input"
-            value="{% if torrent.is_downloaded %}Yes{% else %}No{% endif %}"
+            value="{% if torrent.is_downloaded %}Da{% else %}Ne{% endif %}"
             id="downloaded"
             type="text"
             disabled
@@ -85,7 +85,7 @@
           value="Delete"
           class="btn btn-primary mt-5"
         >
-          Delete
+          Obriši
         </button>
       </form>
     </div>
@@ -96,7 +96,7 @@
   const btnDelete = document.getElementById("delete");
 
   btnDelete.onclick = e => {
-    const dialog = confirm("Proceed?");
+    const dialog = confirm("Stvarno želite obrisati?");
     if (!dialog) {
       e.preventDefault();
     }
