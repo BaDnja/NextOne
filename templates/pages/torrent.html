@@ -87,13 +87,67 @@
         >
           Obriši
         </button>
+
+        <div class="dropdown mt-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="copyDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <h4>Kopiraj</h4>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="copyDropDown">
+            <a id="copy1" class="dropdown-item" href="#!"><h4>Naziv</h4></a>
+            <a id="copy2" class="dropdown-item" href="#!"><h4>Link</h4></a>
+            <a id="copy3" class="dropdown-item" href="#!"><h4>Primarni prijevod</h4></a>
+            <a id="copy4" class="dropdown-item" href="#!"><h4>Sekundarni prijevod</h4></a>
+          </div>
+        </div>
       </form>
     </div>
   </div>
 </div>
 
 <script>
+  document.getElementById("copy1").addEventListener("click", function(){ getElementValue("copy1")});
+  document.getElementById("copy2").addEventListener("click", function(){ getElementValue("copy2")});
+  document.getElementById("copy3").addEventListener("click", function(){ getElementValue("copy3")});
+  document.getElementById("copy4").addEventListener("click", function(){ getElementValue("copy4")});
   const btnDelete = document.getElementById("delete");
+
+  function handleSubstring(element) {
+    var str = element.value;
+    if (str.includes("nije")) {
+      alert("Nije dodan link za sekundarni prijevod");
+    } else {
+      copyText(element);
+      alert("Uspješno kopiran Sekundarni prijevod!");
+    }
+  }
+
+  function getElementValue(copyButton) {
+    if (copyButton == "copy1") {
+      const title = document.getElementById("torrentTitle");
+      copyText(title);
+      alert("Uspješno kopiran Naziv!");
+    } else if (copyButton == "copy2") {
+      const link = document.getElementById("torrentLink");
+      copyText(link);
+      alert("Uspješno kopiran Link!");
+    } else if (copyButton == "copy3") {
+      const sub1 = document.getElementById("primarySubtitle");
+      handleSubstring(sub1);
+    } else {
+      const sub2 = document.getElementById("secondarySubtitle");
+      handleSubstring(sub2);
+    }
+  }
+
+  function copyText(element) {
+    element.disabled = false;
+    element.focus();
+    element.select();
+    
+    var a = document.execCommand("copy");
+    element.disabled = true;
+
+  }
 
   btnDelete.onclick = e => {
     const dialog = confirm("Stvarno želite obrisati?");
