@@ -9,12 +9,14 @@
         <div class="form__item">
           <label class="form__label" for="torrentTitle">Naziv: </label>
           <input
-          style="width: 100%;"
+            style="width: 100%;"
             value="{{ torrent.title }}"
             class="form__input"
             id="torrentTitle"
             type="text"
-            disabled
+            {% if request.user.id != torrent.added_by.id %}
+              disabled
+            {% endif %}
           />
         </div>
 
@@ -26,7 +28,9 @@
             class="form__input"
             id="torrentLink"
             type="text"
-            disabled
+            {% if request.user.id != torrent.added_by.id %}
+              disabled
+            {% endif %}
           />
         </div>
 
@@ -36,11 +40,17 @@
           </label>
           <input
             style="width: 100%;"
-            value="{% if torrent.primary_subtitle %}{{ torrent.primary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} nije dodao primarni prijevod{% endif %}"
+            value="{% if torrent.primary_subtitle %}{{ torrent.primary_subtitle }}
+            {% else %}{% if request.user.id != torrent.added_by.id %}{{ torrent.added_by.get_full_name }} nije dodao primarni prijevod
+            {% else %}Niste dodali primarni prijevod
+            {% endif %}
+          {% endif %}"
             class="form__input"
             id="primarySubtitle"
             type="text"
-            disabled
+            {% if request.user.id != torrent.added_by.id %}
+              disabled
+            {% endif %}
           />
         </div>
 
@@ -50,18 +60,23 @@
           </label>
           <input
             style="width: 100%;"
-            value="{% if torrent.secondary_subtitle %}{{ torrent.secondary_subtitle }}{% else %}{{ torrent.added_by.get_full_name }} nije dodao sekundarni prijevod{% endif %}"
+            value="{% if torrent.secondary_subtitle %}
+            {{ torrent.secondary_subtitle }}
+            {% else %}{% if request.user.id != torrent.added_by.id %}{{ torrent.added_by.get_full_name }} nije dodao sekundarni prijevod
+                {% else %}Niste dodali sekundarni prijevod
+                {% endif %}
+              {% endif %}"
             class="form__input"
             id="secondarySubtitle"
             type="text"
-            disabled
+            {% if request.user.id != torrent.added_by.id %}
+              disabled
+            {% endif %}
           />
         </div>
 
         <div class="form__item">
-          <label class="form__label" for="secondarySubtitle"
-            >Preuzeto?
-          </label>
+          <label class="form__label" for="secondarySubtitle">Preuzeto? </label>
           <input
             style="width: 100%;"
             class="form__input"
@@ -73,13 +88,9 @@
         </div>
 
         {% include 'partials/_alerts.html' %}
-
+        
+        {% if request.user.id == torrent.added_by.id %}
         <button
-          {% if request.user.id == torrent.added_by.id %}
-            style="display: block;"
-          {% else %}
-            style="display: none;"
-          {% endif %}
           id="delete"
           type="submit"
           value="Delete"
@@ -87,16 +98,28 @@
         >
           Obriši
         </button>
+        {% endif %}
 
-        <div class="dropdown mt-3">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="copyDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="dropdown mt-5">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="copyDropDown"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
             <h4>Kopiraj</h4>
           </button>
           <div class="dropdown-menu" aria-labelledby="copyDropDown">
             <a id="copy1" class="dropdown-item" href="#!"><h4>Naziv</h4></a>
             <a id="copy2" class="dropdown-item" href="#!"><h4>Link</h4></a>
-            <a id="copy3" class="dropdown-item" href="#!"><h4>Primarni prijevod</h4></a>
-            <a id="copy4" class="dropdown-item" href="#!"><h4>Sekundarni prijevod</h4></a>
+            <a id="copy3" class="dropdown-item" href="#!"
+              ><h4>Primarni prijevod</h4></a
+            >
+            <a id="copy4" class="dropdown-item" href="#!"
+              ><h4>Sekundarni prijevod</h4></a
+            >
           </div>
         </div>
       </form>
@@ -105,10 +128,18 @@
 </div>
 
 <script>
-  document.getElementById("copy1").addEventListener("click", function(){ getElementValue("copy1")});
-  document.getElementById("copy2").addEventListener("click", function(){ getElementValue("copy2")});
-  document.getElementById("copy3").addEventListener("click", function(){ getElementValue("copy3")});
-  document.getElementById("copy4").addEventListener("click", function(){ getElementValue("copy4")});
+  document.getElementById("copy1").addEventListener("click", function() {
+    getElementValue("copy1");
+  });
+  document.getElementById("copy2").addEventListener("click", function() {
+    getElementValue("copy2");
+  });
+  document.getElementById("copy3").addEventListener("click", function() {
+    getElementValue("copy3");
+  });
+  document.getElementById("copy4").addEventListener("click", function() {
+    getElementValue("copy4");
+  });
   const btnDelete = document.getElementById("delete");
 
   function handleSubstring(element) {
@@ -143,10 +174,9 @@
     element.disabled = false;
     element.focus();
     element.select();
-    
+
     var a = document.execCommand("copy");
     element.disabled = true;
-
   }
 
   btnDelete.onclick = e => {
