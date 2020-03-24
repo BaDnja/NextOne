@@ -49,7 +49,7 @@ def torrent(request, torrent_id):
         torrent.secondary_subtitle = request.POST.get("secondarySubtitle")
         torrent.save()
         messages.success(request, 'Torrent je uspješno izmjenjen!')
-        return redirect('torrent_delete', torrent_id=torrent.id)
+        return redirect('torrent', torrent_id=torrent.id)
     else:
         context = {
         'torrent': torrent
