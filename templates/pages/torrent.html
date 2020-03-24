@@ -13,6 +13,7 @@
             value="{{ torrent.title }}"
             class="form__input"
             id="torrentTitle"
+            name="torrentTitle"
             type="text"
             {% if request.user.id != torrent.added_by.id %}
               disabled
@@ -27,6 +28,7 @@
             value="{{ torrent.link }}"
             class="form__input"
             id="torrentLink"
+            name="torrentLink"
             type="text"
             {% if request.user.id != torrent.added_by.id %}
               disabled
@@ -47,6 +49,7 @@
           {% endif %}"
             class="form__input"
             id="primarySubtitle"
+            name="primarySubtitle"
             type="text"
             {% if request.user.id != torrent.added_by.id %}
               disabled
@@ -62,13 +65,16 @@
             style="width: 100%;"
             value="{% if torrent.secondary_subtitle %}
             {{ torrent.secondary_subtitle }}
-            {% else %}{% if request.user.id != torrent.added_by.id %}{{ torrent.added_by.get_full_name }} nije dodao sekundarni prijevod
-                {% else %}Niste dodali sekundarni prijevod
-                {% endif %}
-              {% endif %}"
+            {% endif %}"
             class="form__input"
             id="secondarySubtitle"
+            name="secondarySubtitle"
             type="text"
+            {% if not torrent.secondary_subtitle %}
+             placeholder="{% if request.user.id != torrent.added_by.id %}{{ torrent.added_by.get_full_name }} nije dodao sekundarni prijevod
+             {% else %}Niste dodali sekundarni prijevod
+             {% endif %}"
+            {% endif %}
             {% if request.user.id != torrent.added_by.id %}
               disabled
             {% endif %}
@@ -86,10 +92,23 @@
             disabled
           />
         </div>
+        {% if request.user.id == torrent.added_by.id %}
+        <button
+          id="save"
+          type="submit"
+          value="Save"
+          class="btn btn-primary mt-5"
+        >
+          Sačuvaj promjene
+        </button>
+        {% endif %}
+      </form>
 
         {% include 'partials/_alerts.html' %}
         
         {% if request.user.id == torrent.added_by.id %}
+        <form action="{% url 'torrent_delete' torrent.id %}" method="POST">
+          {% csrf_token %}
         <button
           id="delete"
           type="submit"
@@ -98,6 +117,7 @@
         >
           Obriši
         </button>
+        </form>
         {% endif %}
 
         <div class="dropdown mt-5">
@@ -122,7 +142,6 @@
             >
           </div>
         </div>
-      </form>
     </div>
   </div>
 </div>
@@ -144,11 +163,11 @@
 
   function handleSubstring(element) {
     var str = element.value;
-    if (str.includes("nije")) {
-      alert("Nije dodan link za sekundarni prijevod");
+    if (str === '') {
+      alert("Nije dodan link za prijevod");
     } else {
       copyText(element);
-      alert("Uspješno kopiran Sekundarni prijevod!");
+      alert("Uspješno kopiran prijevod!");
     }
   }
 
@@ -171,12 +190,17 @@
   }
 
   function copyText(element) {
-    element.disabled = false;
+    let isDisabled = element.disabled
+    if (isDisabled) {
+      element.disabled = false;
+    }
     element.focus();
     element.select();
-
     var a = document.execCommand("copy");
-    element.disabled = true;
+
+    if (isDisabled) {
+      element.disabled = true;
+    }
   }
 
   btnDelete.onclick = e => {

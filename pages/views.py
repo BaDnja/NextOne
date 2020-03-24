@@ -42,15 +42,28 @@ def torrent(request, torrent_id):
     torrent = get_object_or_404(Torrent, pk=torrent_id)
 
     if request.method == 'POST':
-        torrent.delete()
-        messages.success(request, 'Torrent successfuly deleted!')
-        return redirect('all_torrents')
+        print(request.POST)
+        torrent.title = request.POST.get("torrentTitle")
+        torrent.link = request.POST.get("torrentLink")
+        torrent.primary_subtitle = request.POST.get("primarySubtitle")
+        torrent.secondary_subtitle = request.POST.get("secondarySubtitle")
+        torrent.save()
+        messages.success(request, 'Torrent je uspješno izmjenjen!')
+        return redirect('torrent_delete', torrent_id=torrent.id)
     else:
         context = {
         'torrent': torrent
         }
 
         return render(request, 'pages/torrent.html', context)
+
+def torrent_delete(request, torrent_id):
+    torrent = get_object_or_404(Torrent, pk=torrent_id)
+
+    if request.method == 'POST':
+        torrent.delete()
+        messages.success(request, 'Torrent successfuly deleted!')
+        return redirect('all_torrents')
 
 def upload(request):
     if request.method == 'POST':

@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', default='static\img\static-user.png')
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', default='static-user.png')
 
     def __str__(self):
         return self.user.username
