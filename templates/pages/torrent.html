@@ -42,11 +42,9 @@
           </label>
           <input
             style="width: 100%;"
-            value="{% if torrent.primary_subtitle %}{{ torrent.primary_subtitle }}
-            {% else %}{% if request.user.id != torrent.added_by.id %}{{ torrent.added_by.get_full_name }} nije dodao primarni prijevod
-            {% else %}Niste dodali primarni prijevod
-            {% endif %}
-          {% endif %}"
+            value="{% if torrent.primary_subtitle %}{{ torrent.primary_subtitle }}{% endif %}"
+            placeholder="{% if request.user.id != torrent.added_by.id %}{{ torrent.added_by.get_full_name }} nije dodao primarni prijevod
+            {% else %}Niste dodali primarni prijevod{% endif %}"
             class="form__input"
             id="primarySubtitle"
             name="primarySubtitle"
@@ -63,9 +61,7 @@
           </label>
           <input
             style="width: 100%;"
-            value="{% if torrent.secondary_subtitle %}
-            {{ torrent.secondary_subtitle }}
-            {% endif %}"
+            value="{% if torrent.secondary_subtitle %}{{ torrent.secondary_subtitle }}{% endif %}"
             class="form__input"
             id="secondarySubtitle"
             name="secondarySubtitle"
@@ -82,7 +78,7 @@
         </div>
 
         <div class="form__item">
-          <label class="form__label" for="secondarySubtitle">Preuzeto? </label>
+          <label class="form__label" for="downloaded">Preuzeto? </label>
           <input
             style="width: 100%;"
             class="form__input"

@@ -42,7 +42,6 @@ def torrent(request, torrent_id):
     torrent = get_object_or_404(Torrent, pk=torrent_id)
 
     if request.method == 'POST':
-        print(request.POST)
         torrent.title = request.POST.get("torrentTitle")
         torrent.link = request.POST.get("torrentLink")
         torrent.primary_subtitle = request.POST.get("primarySubtitle")
