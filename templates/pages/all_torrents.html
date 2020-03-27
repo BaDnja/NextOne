@@ -17,8 +17,16 @@
           type="text"
           placeholder="Pretraži Torrente"
           aria-label="Search"
-          required
         />
+
+        <label for="genre" class="sr-only">Genres</label>
+        <select name="genre" id="genre" class="form-control">
+          <option value="all">All</option>
+          {% for genre in genres %}
+            <option value="{{ genre.pk }}">{{ genre.name }}</option>
+          {% endfor %}
+        </select>
+
         <button class="btn btn-outline-success" type="submit">Pretraga</button>
       </form>
     </div>
@@ -49,6 +57,13 @@
             <div class="row mb-2">
               <h3 class="ml-3">Datum:</h3>
               <h3 class="text-right ml-5">{{ torrent.date_added }}</h3>
+            </div>
+
+            <div class="row mb-2">
+              <h3 class="ml-3 mr-5">Za roditelje?</h3>
+              <h3 class="text-right ml-5">
+                {% if torrent.for_parents %} Da {% else %} Ne {% endif %}
+              </h3>
             </div>
 
             <div class="row mb-2">

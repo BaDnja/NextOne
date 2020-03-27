@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Torrent
+from .models import Torrent, Genre
 
 class ListingAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'date_added', 'is_downloaded')
@@ -10,3 +10,4 @@ class ListingAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 admin.site.register(Torrent, ListingAdmin)
+admin.site.register(Genre)

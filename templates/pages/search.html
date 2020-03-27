@@ -52,6 +52,13 @@
             </div>
 
             <div class="row mb-2">
+              <h3 class="ml-3 mr-5">Za roditelje?</h3>
+              <h3 class="text-right ml-5">
+                {% if torrent.for_parents %} Da {% else %} Ne {% endif %}
+              </h3>
+            </div>
+
+            <div class="row mb-2">
               <h3 class="ml-3 mr-5">Preuzeto:</h3>
               <h3 class="text-right ml-5">
                 {% if torrent.is_downloaded %}Da{% else %}Ne{% endif %}

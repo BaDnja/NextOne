@@ -76,6 +76,18 @@
             {% endif %}
           />
         </div>
+        
+        <div class="form__item mt-3">
+          <label class="form__label" for="parents">Za roditelje</label>
+          <input type="checkbox" class="form__input" id="parents" name="parents"
+          {% if request.user.id != torrent.added_by.id %}
+            disabled
+          {% endif %}
+          {% if torrent.for_parents %}
+            checked
+          {% endif %}
+          >
+        </div>
 
         <div class="form__item">
           <label class="form__label" for="downloaded">Preuzeto? </label>
