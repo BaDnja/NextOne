@@ -12,6 +12,7 @@ class Torrent(models.Model):
     for_parents = models.BooleanField(default=False)
     added_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     genres = models.ManyToManyField("torrents.Genre")
+    watched = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
