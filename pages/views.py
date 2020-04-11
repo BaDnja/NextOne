@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib import messages, auth
 from torrents.models import Torrent, Genre
 from torrents.forms import TorrentForm
@@ -25,8 +26,12 @@ def all_torrents(request):
     torrents = Torrent.objects.order_by('-date_added')
     genres = Genre.objects.order_by('name')
 
+    paginator = Paginator(torrents, 25)
+    page = request.GET.get('page')
+    paged_torrents = paginator.get_page(page)
+
     context = {
-        'torrents': torrents,
+        'torrents': paged_torrents,
         'genres': genres,
     }
 
@@ -36,8 +41,12 @@ def my_torrents(request):
     torrents = Torrent.objects.filter(added_by=request.user.id)
     genres = Genre.objects.order_by('name')
 
+    paginator = Paginator(torrents, 15)
+    page = request.GET.get('page')
+    paged_torrents = paginator.get_page(page)
+
     context = {
-        'torrents': torrents,
+        'torrents': paged_torrents,
         'genres': genres,
     }
 
@@ -122,6 +131,7 @@ def search(request):
         name = request.POST['torrentName']
         genre = request.POST['genre']
         torrents = Torrent.objects.filter(title__icontains=name)
+        
         if genre!='all':
             torrents = torrents.filter(genres__id=genre)
 
