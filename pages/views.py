@@ -34,9 +34,11 @@ def all_torrents(request):
 
 def my_torrents(request):
     torrents = Torrent.objects.filter(added_by=request.user.id)
+    genres = Genre.objects.order_by('name')
 
     context = {
         'torrents': torrents,
+        'genres': genres,
     }
 
     return render(request, 'pages/my_torrents.html', context)
@@ -54,8 +56,10 @@ def torrent(request, torrent_id):
         messages.success(request, 'Torrent je uspješno izmjenjen!')
         return redirect('torrent', torrent_id=torrent.id)
     else:
+        form = TorrentForm()
         context = {
-        'torrent': torrent
+            'torrent': torrent,
+            'form': form,
         }
 
         return render(request, 'pages/torrent.html', context)
@@ -112,6 +116,8 @@ def upload(request):
         return render(request, 'pages/upload.html', context)
 
 def search(request):
+    genres = Genre.objects.order_by('name')
+
     if request.method == 'POST':
         name = request.POST['torrentName']
         genre = request.POST['genre']
@@ -121,6 +127,7 @@ def search(request):
 
         context = {
             'torrents': torrents,
+            'genres': genres,
         }
 
         return render(request, 'pages/search.html', context)

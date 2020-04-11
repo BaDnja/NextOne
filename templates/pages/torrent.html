@@ -89,6 +89,15 @@
           >
         </div>
 
+        <div class="genres-movie">
+          <label class="form__label" >Žanrovi</label>
+          <div class="row">
+            {% for genre in torrent.genres.all %}
+            <h3><span class="badge badge-pill badge-info ml-3">{{ genre }}</span></h3>
+            {% endfor %}
+          </div>
+        </div>
+
         <div class="form__item">
           <label class="form__label" for="downloaded">Preuzeto? </label>
           <input
@@ -168,6 +177,19 @@
     getElementValue("copy4");
   });
   const btnDelete = document.getElementById("delete");
+  const genres_dropdown = document.getElementById("genres-dropdown");
+  var genres_table = false;
+
+  genres_dropdown.onclick = function dropdown() {
+    if (genres_table == false) {
+      genres_table = document.getElementById("genres-table");
+      genres_table.style.display = "block";
+    } else {
+      genres_table = document.getElementById("genres-table");
+      genres_table.style.display = "none";
+      genres_table = false;
+    }
+  }
 
   function handleSubstring(element) {
     var str = element.value;

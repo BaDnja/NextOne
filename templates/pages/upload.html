@@ -62,7 +62,7 @@
         </div>
 
         <div class="genres">
-          <button id="genres-dropdown" type="button" class="btn btn-lg btn-secondary">Žanrovi</button>
+          <button id="genres-dropdown" type="button" class="btn btn-lg btn-secondary">Prikaži žanrove</button>
           <div id="genres-table">
             <table class="table table-sm mt-3 table-bordered">
               <tbody>
@@ -97,10 +97,12 @@
     if (genres_table == false) {
       genres_table = document.getElementById("genres-table");
       genres_table.style.display = "block";
+      genres_dropdown.innerHTML = "Sakrij žanrove";
     } else {
       genres_table = document.getElementById("genres-table");
       genres_table.style.display = "none";
       genres_table = false;
+      genres_dropdown.innerHTML = "Prikaži žanrove";
     }
   }
 </script>
