@@ -44,7 +44,7 @@
       {% if torrents %} {% for torrent in torrents %}
       <div class="col-sm-2 col-lg-4 mb-4">
         <div class="card text-center torrent-preview" style="width: 28em;">
-          <h2 class="mb-2 text-center">{{ torrent.title }}</h2>
+          <h2 class="mb-2 text-center">{{ torrent.title }} {{ torrent.year }}</h2>
 
           <div class="card-body">
             <div class="row mb-2">

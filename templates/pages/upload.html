@@ -18,6 +18,11 @@
           />
         </div>
 
+        <label for="release-year" class="form__label">Godina</label>
+        <select name="release-year" id="release-year" class="form-control mb-2">
+          <!-- Generating options using JS -->
+        </select>
+
         <div class="form__item">
           <label class="form__label" for="torrentLink">Link: </label>
           <input
@@ -105,6 +110,14 @@
       genres_dropdown.innerHTML = "Prikaži žanrove";
     }
   }
+
+  var start = new Date().getFullYear();
+  var end = 1900;
+  var options = "<option value='select-year'>Izaberi godinu</option>";
+  for(var year = start ; year >=end; year--){
+    options += "<option>"+ year +"</option>";
+  }
+  document.getElementById("release-year").innerHTML = options;
 </script>
 
 {% endblock %}

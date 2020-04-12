@@ -86,6 +86,7 @@ def upload(request):
         form = TorrentForm(data=request.POST)
         if form.is_valid():
             title = request.POST['torrentTitle']
+            year = request.POST['release-year']
             link = request.POST['torrentLink']
             primary_subtitle = request.POST['primary_subtitle']
             secondary_subtitle = request.POST['secondary_subtitle']
@@ -93,10 +94,14 @@ def upload(request):
 
 
             if Torrent.objects.filter(title=title).exists():
-                messages.error(request, "Torrent already exists!")
+                messages.error(request, "Torrent već postoji!")
+                return redirect('upload')
+            elif year == 'select-year':
+                messages.error(request, "Unesite ispravno godinu!")
                 return redirect('upload')
             else:
                 torrent = Torrent(title=title,
+                                year=year,
                                 link=link,
                                 primary_subtitle=primary_subtitle,
                                 secondary_subtitle=secondary_subtitle,

@@ -9,7 +9,7 @@
         <div class="form__item">
           <label class="form__label" for="torrentTitle">Naziv: </label>
           <input
-            style="width: 100%;"
+            style="width: 70%;"
             value="{{ torrent.title }}"
             class="form__input"
             id="torrentTitle"
@@ -21,10 +21,23 @@
           />
         </div>
 
-        <div class="form__item">
+        <div class="form__item mt-2">
+        <label for="release-year" class="form__label">Godina</label>
+        <input
+            style="width: 30%;"
+            value="{{ torrent.year }}"
+            class="form__input"
+            id="release-year"
+            name="release-year"
+            type="text"
+            disabled
+          />
+        </div>
+
+        <div class="form__item mt-2">
           <label class="form__label" for="torrentLink">Link: </label>
           <input
-            style="width: 100%;"
+            style="width: 70%;"
             value="{{ torrent.link }}"
             class="form__input"
             id="torrentLink"
@@ -36,7 +49,7 @@
           />
         </div>
 
-        <div class="form__item">
+        <div class="form__item mt-2">
           <label class="form__label" for="primarySubtitle"
             >Primarni prijevod:
           </label>
@@ -55,7 +68,7 @@
           />
         </div>
 
-        <div class="form__item">
+        <div class="form__item mt-2">
           <label class="form__label" for="secondarySubtitle"
             >Sekundarni prijevod:
           </label>
@@ -111,7 +124,7 @@
         <div class="form__item">
           <label class="form__label" for="downloaded">Preuzeto? </label>
           <input
-            style="width: 100%;"
+            style="width: 30%;"
             class="form__input"
             value="{% if torrent.is_downloaded %}Da{% else %}Ne{% endif %}"
             id="downloaded"
