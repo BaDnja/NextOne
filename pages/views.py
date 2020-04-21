@@ -101,7 +101,7 @@ def upload(request):
                 return redirect('upload')
             else:
                 torrent = Torrent(title=title,
-                                year=year,
+                                year=int(year),
                                 link=link,
                                 primary_subtitle=primary_subtitle,
                                 secondary_subtitle=secondary_subtitle,

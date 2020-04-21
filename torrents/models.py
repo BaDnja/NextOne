@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Torrent(models.Model):
     title = models.CharField(max_length=200)
-    year = models.IntegerField()
+    year = models.IntegerField(null=True, default=None)
     link = models.CharField(max_length=200)
     date_added = models.DateField(default=datetime.now, blank=True)
     is_downloaded = models.BooleanField(default=False)
@@ -17,6 +17,11 @@ class Torrent(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_year(self):
+        if self.year:
+            return self.year
+        return ""
 
 class Genre(models.Model):
     name = models.CharField(max_length=100)
